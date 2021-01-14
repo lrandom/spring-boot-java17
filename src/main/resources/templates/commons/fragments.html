@@ -5,9 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-  <div th:replace="~{commons/fragments :: nav}"></div>
-  <div>Nội dung chính</div>
-   <div th:replace="~{commons/fragments :: #footer}"></div>
-
+<nav th:fragment="nav">This is navbar</nav>
+<footer id="footer">
+    This is footer
+</footer>
 </body>
 </html>

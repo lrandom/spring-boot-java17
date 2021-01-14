@@ -15,9 +15,18 @@ public class Session2Controller {
         user.id = "1";
         user.name = "Nam";
 
-
-
         model.addAttribute("user", user);
+
+        String[] alphabet = new String[]{"A","B","C"};
+        model.addAttribute("alphabet", alphabet);
+
+        model.addAttribute("condition", true);
+        model.addAttribute("age", 18);
         return "session2/test1";
+    }
+
+    @GetMapping("/session2/test2")
+    public String test2(){
+        return "index";
     }
 }

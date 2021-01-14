@@ -5,16 +5,33 @@
     <title>Title</title>
 </head>
 <body>
-   <div th:text="${greeting}"></div>
+<div th:text="${greeting}"></div>
 
-    <div th:object="${user}">
-        <div th:text="*{id}"></div>
-        <div th:text="*{name}"></div>
-    </div>
+<div th:object="${user}">
+    <div th:text="*{id}"></div>
+    <div th:text="*{name}"></div>
+</div>
 
-    <div th:text="#{hi}"></div>
+<div th:text="#{hi}"></div>
 
-    <a th:href="@{/send-contact}">Send Contact</a>
-    <a th:href="@{/send-contact(id=1,name='Luan')}">Send Contact 2</a>
+<a th:href="@{/send-contact}">Send Contact</a>
+<a th:href="@{/send-contact(id=1,name='Luan')}">Send Contact 2</a>
+
+<div th:each="item : ${alphabet}">
+    <div th:text="${item}"></div>
+</div>
+
+<div th:if="${condition}">
+    True
+</div>
+
+<div th:unless="${condition}">
+    False
+</div>
+
+<div th:switch="${age}">
+    <div th:case="18">Bạn đủ tuổi</div>
+    <div th:case="16">Bạn không đủ tuổi</div>
+</div>
 </body>
 </html>
