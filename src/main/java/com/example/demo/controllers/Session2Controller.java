@@ -4,6 +4,8 @@ import com.example.demo.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class Session2Controller {
@@ -28,5 +30,17 @@ public class Session2Controller {
     @GetMapping("/session2/test2")
     public String test2(){
         return "index";
+    }
+
+    @GetMapping("/session2/test3")
+    public String test3(Model model, User user){
+        model.addAttribute("user", user);
+        return "form";
+    }
+
+    @PostMapping("/session2/test4")
+    public String test4(User user, Model model){
+        model.addAttribute("user", user);
+        return "display";
     }
 }

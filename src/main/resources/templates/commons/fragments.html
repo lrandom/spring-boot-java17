@@ -5,7 +5,11 @@
     <title>Title</title>
 </head>
 <body>
-<nav th:fragment="nav">This is navbar</nav>
+<nav th:fragment="nav(param1,param2)">
+    This is navbar
+    <div th:text="${param1}"></div>
+    <div th:text="${param2}"></div>
+</nav>
 <footer id="footer">
     This is footer
 </footer>

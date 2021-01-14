@@ -5,8 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-  <div th:replace="~{commons/fragments :: nav(10,20)}"></div>
-  <div>Nội dung chính</div>
-  <div th:replace="~{commons/fragments :: #footer}"></div>
+  <div th:text="${user.name}"></div>
+  <div th:text="${user.fullname}"></div>
 </body>
 </html>
