@@ -8,8 +8,31 @@
 <form method="POST"
       enctype="multipart/form-data"
       action="/do-upload-file">
-    <input type="file" name="img">
+
+    <img src="" alt="" id="preview">
+    
+    <input type="file" name="img" onchange="readURL(this)">
     <button>Upload</button>
 </form>
+
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const previewIamge = document.querySelector("#preview");
+                previewIamge.setAttribute("src",e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+    }
+
+
+/*    $("#imgInp").change(function() {
+        readURL(this);
+    });*/
+</script>
 </body>
 </html>

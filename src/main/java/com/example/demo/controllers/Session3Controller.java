@@ -13,9 +13,14 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Calendar;
+import java.util.Date;
 
 @Controller
 public class Session3Controller {
@@ -62,8 +67,20 @@ public class Session3Controller {
            //buoc 1: convert file thanh mang bytes
            byte[] bytesFile = file.getBytes();
 
+           //1_2021, 2_2021, 3_2021
+           Date date = new Date();
+           LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+           int month = localDate.getMonthValue();
+           int year = localDate.getYear();
+           String newDirName = month+"_"+year;
+           File newDir = new File(UPLOAD_FOLDER+newDirName);///Users/mac/Documents/spring-uploads/1_2021
+           if(!newDir.exists() || newDir.isFile()){
+               //tạo mới thư mục
+               newDir.mkdir();
+           }
+
            //buoc 2: tao đối tuợng path
-           Path path = Paths.get(UPLOAD_FOLDER+file.getOriginalFilename());
+           Path path = Paths.get(UPLOAD_FOLDER+newDirName+"/"+System.currentTimeMillis()+file.getOriginalFilename());
 
            //buoc 3: ghi file vào trong thư mục
            Files.write(path, bytesFile);
@@ -73,5 +90,10 @@ public class Session3Controller {
             e.printStackTrace();
        }
        return "redirect:/upload-file";
+   }
+
+   @GetMapping("/preview")
+   public String preview(){
+       return "session3/preview";
    }
 }
